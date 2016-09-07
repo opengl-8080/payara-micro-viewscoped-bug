@@ -14,13 +14,3 @@ dependencies {
 }
 
 war.baseName = 'test'
-
-task run(type: Exec, dependsOn: war) {
-    def payaraJarPath = configurations
-                          .providedCompile
-                          .find {it.name =~ /payara-micro.*\.jar/}
-                          .absolutePath
-    def warFile = war.archivePath
-
-    commandLine('java', '-jar', payaraJarPath, '--deploy', warFile)
-}
